@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartTodoAPI.Data;
+using SmartTodoAPI.Repositories.Implementations;
+using SmartTodoAPI.Repositories.Interfaces;
+using SmartTodoAPI.Services.Implementations;
+using SmartTodoAPI.Services.Interfaces;
 
 namespace SmartTodoAPI
 {
@@ -17,7 +21,8 @@ namespace SmartTodoAPI
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddDbContext<ApplicationDbContext>(options => { options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")); });
 
             var app = builder.Build();

@@ -1,0 +1,25 @@
+# SmartTodo Roadmap
+
+## Phase 1
+- Backend Setup
+- Entity Framework
+- SQL Server
+- Authentication
+
+## Phase 2
+- Todo CRUD
+
+## Phase 3
+- React UI
+
+## Phase 4
+- Redis Cache
+
+## Phase 5
+- Docker
+
+## Phase 6
+- CI/CD
+
+## Phase 7
+- AI Assistant
