@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartTodoAPI.Data;
+using SmartTodoAPI.Middleware;
 using SmartTodoAPI.Repositories.Implementations;
 using SmartTodoAPI.Repositories.Interfaces;
 using SmartTodoAPI.Services.Implementations;
@@ -35,7 +36,7 @@ namespace SmartTodoAPI
             }
 
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseAuthorization();
 
 

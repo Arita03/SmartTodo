@@ -1,4 +1,5 @@
 ﻿using SmartTodoAPI.DTOs.Auth;
+using SmartTodoAPI.Exceptions;
 using SmartTodoAPI.Models;
 using SmartTodoAPI.Repositories.Interfaces;
 using SmartTodoAPI.Services.Interfaces;
@@ -19,7 +20,7 @@ namespace SmartTodoAPI.Services.Implementations
             var emailExists = await _userRepository.IsEmailExistsAsync(request.Email);
             if (emailExists)
             {
-                throw new Exception("Email already exists.");
+                throw new BadRequestException("Email already exists.");
             }
 
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(request.Password);
