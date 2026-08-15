@@ -1,11 +1,6 @@
-﻿using Azure.Core;
-using Microsoft.Identity.Client;
-using SmartTodoAPI.Exceptions;
-using SmartTodoAPI.Models;
+﻿using SmartTodoAPI.Exceptions;
 using SmartTodoAPI.Responses;
-using System.Net;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace SmartTodoAPI.Middleware
 {
@@ -25,7 +20,6 @@ namespace SmartTodoAPI.Middleware
             }
             catch (Exception ex) //Catch any object whose type is Exception or inherits from Exception, and store it in the variable ex.
             {
-                Console.WriteLine(ex.StackTrace);
                 await HandleExceptionAsync(context, ex);
             }
         }
@@ -38,8 +32,8 @@ namespace SmartTodoAPI.Middleware
             var statusCode = exception switch //How does the switch know it's a BadRequestException if the parameter type is Exception - This is called runtime type checking, and the switch expression checks the object's actual type.
             {
                 BadRequestException => StatusCodes.Status400BadRequest,
-                //NotFoundException => StatusCodes.Status404NotFound,
-                //UnauthorizedException => StatusCodes.Status401Unauthorized,
+                NotFoundException => StatusCodes.Status404NotFound,
+                UnauthorizedException => StatusCodes.Status401Unauthorized,
                 //ForbiddenException => StatusCodes.Status403Forbidden,
                 _ => StatusCodes.Status500InternalServerError
             };
